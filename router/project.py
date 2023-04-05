@@ -28,7 +28,6 @@ async def query_all(search: Search = Depends()) -> PR[ListProject]:
 @project.post(url_dir, summary="新增项目")
 async def create(instance: schemas.ProjectCreate) -> R[schemas.Project]:
     obj = await models.Project.create(**instance.dict(exclude_unset=True))
-    print(obj)
     return R.success(obj)
 
 

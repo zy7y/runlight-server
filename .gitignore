@@ -255,3 +255,4 @@ cython_debug/
 .ruff_cache
 db.sqlite3-shm
 db.sqlite3-wal
+*.log
