@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 
+from router.interface import interface
 from router.project import project
 
 app = FastAPI()
@@ -14,6 +15,7 @@ register_tortoise(
 )
 
 app.include_router(project, prefix="/api")
+app.include_router(interface, prefix="/api")
 
 if __name__ == "__main__":
     import uvicorn

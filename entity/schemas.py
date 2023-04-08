@@ -61,6 +61,11 @@ class SearchParam(PageParam):
         return result
 
 
+class TimeField(BaseModel):
+    created_at: datetime.datetime
+    updated_at: datetime.datetime
+
+
 class ProjectBase(BaseModel):
     name: str = Field(...)
     description: Optional[str] = None
@@ -74,10 +79,8 @@ class ProjectUpdate(ProjectBase):
     pass
 
 
-class Project(ProjectBase):
+class Project(ProjectBase, TimeField):
     id: int
-    created_at: datetime.datetime
-    updated_at: datetime.datetime
 
     class Config:
         orm_mode = True
@@ -100,10 +103,8 @@ class InterfaceUpdate(InterfaceBase):
     pass
 
 
-class Interface(InterfaceBase):
+class Interface(InterfaceBase, TimeField):
     id: int
-    created_at: str = Field(alias="createdAt")
-    updated_at: str = Field(alias="updatedAt")
     project: Project
 
     class Config:
@@ -127,10 +128,8 @@ class StepUpdate(StepBase):
     pass
 
 
-class Step(StepBase):
+class Step(StepBase, TimeField):
     id: int
-    created_at: str = Field(alias="createdAt")
-    updated_at: str = Field(alias="updatedAt")
     interface: Interface
 
     class Config:
@@ -154,10 +153,8 @@ class CaseUpdate(CaseBase):
     pass
 
 
-class Case(CaseBase):
+class Case(CaseBase, TimeField):
     id: int
-    created_at: str = Field(alias="createdAt")
-    updated_at: str = Field(alias="updatedAt")
     interface: Interface
     steps: List[Step] = []
 
@@ -179,10 +176,8 @@ class CaseStepUpdate(CaseStepBase):
     pass
 
 
-class CaseStep(CaseStepBase):
+class CaseStep(CaseStepBase, TimeField):
     id: int
-    created_at: str = Field(alias="createdAt")
-    updated_at: str = Field(alias="updatedAt")
 
     class Config:
         orm_mode = True
@@ -202,10 +197,8 @@ class ConfigUpdate(ConfigBase):
     pass
 
 
-class Config(ConfigBase):
+class Config(ConfigBase, TimeField):
     id: int
-    created_at: str = Field(alias="createdAt")
-    updated_at: str = Field(alias="updatedAt")
 
     class Config:
         orm_mode = True
