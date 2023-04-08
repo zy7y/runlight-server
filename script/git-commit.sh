@@ -11,6 +11,6 @@ fi
 # 提交并推送修改
 git add .
 git commit -m "$message"
-git push
+git push https://github.com/zy7y/runlight-server.git
 
 echo "提交成功"
